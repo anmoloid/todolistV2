@@ -5,6 +5,7 @@ const bodyParser = require("body-parser");
 const date = require(__dirname + "/date.js");
 const mongoose=require("mongoose")
 const lodash=require("lodash")
+const mongoURI=process.env.MONGODB_CONNECTION_STRING
 
 const app = express();
 
@@ -13,7 +14,7 @@ app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static("public"));
 
-mongoose.connect("mongodb+srv://admin-anmol:anmol3478@cluster0.76rfaqi.mongodb.net/itemsdb?retryWrites=true&w=majority",{useNewUrlParser:true});
+mongoose.connect(mongoURI,{useNewUrlParser:true});
 
 const itemsSchema = new mongoose.Schema({
   name: {
